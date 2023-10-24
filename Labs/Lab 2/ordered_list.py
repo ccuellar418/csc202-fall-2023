@@ -10,7 +10,8 @@ class Node:
 
 @dataclass
 class doubly_Ordered_List:
-
+    head: "Node" = None
+    tail: "Node" = None
     """
     A doubly-linked ordered list of items, from lowest (head of list) to highest (tail of list)
     """
@@ -54,24 +55,72 @@ class doubly_Ordered_List:
         MUST have O(n) average-case performance"""
         pass
 
+    """
+    Return a Python list representation of OrderedList, from head to tail
+    For example, list with integers 1, 2, and 3 would return [1, 2, 3]
+    MUST have O(n) performance
+    """
+
     def python_list(self):
-        """Return a Python list representation of OrderedList, from head to tail
-        For example, list with integers 1, 2, and 3 would return [1, 2, 3]
-        MUST have O(n) performance"""
-        pass
+        # Checks if the head even exists
+        if self.head is None:
+            return []
+
+        # Checks if the head is the only node
+        elif self.head.next_node is None:
+            return [self.head.value]
+
+        else:
+            python_list = []
+            current_node = self.head
+            while current_node is not None:
+                # Puts values into the python_list from the current node
+                python_list.append(current_node.value)
+                # Now, move onto the next node
+                current_node = current_node.next_node
+            return python_list
+
+    """
+    Return a Python list representation of OrderedList, from tail to head, using recursion
+    For example, list with integers 1, 2, and 3 would return [3, 2, 1]
+    To practice recursion, this method must call a RECURSIVE method that will return a reversed list
+    MUST have O(n) performance
+    """
 
     def python_list_reversed(self):
-        """Return a Python list representation of OrderedList, from tail to head, using
-        recursion
-        For example, list with integers 1, 2, and 3 would return [3, 2, 1]
-        To practice recursion, this method must call a RECURSIVE method that
-        will return a reversed list
-        MUST have O(n) performance"""
-        pass
+        # Checks if the tail even exists
+        if self.tail is None or self.tail.prev_node is None:
+            return []
+
+        global python_list
+        global current_node
+
+        while current_node is not None:
+            # Puts values into the python_list from the current node
+            python_list.append(current_node.value)
+
+            # Now, move onto the next node
+            current_node.python_list_reversed(current_node.prev_node)
+        return python_list
+
+    """
+    Returns number of items in the OrderedList
+    To practice recursion, this method must call a RECURSIVE method that will count and return the number of items in the list
+    MUST have O(n) performance
+    """
 
     def size(self):
-        """Returns number of items in the OrderedList
-        To practice recursion, this method must call a RECURSIVE method that
-        will count and return the number of items in the list
-        MUST have O(n) performance"""
-        pass
+        global count
+        global current_node
+
+        # Checks if the head even exists
+        if self.head is None or self.head.next_node is None:
+            return 0
+
+        # Add up the number of nodes in the list
+        if current_node is not None:
+            count += 1
+            current_node = current_node.next_node
+            self.size()
+        else:
+            return count
