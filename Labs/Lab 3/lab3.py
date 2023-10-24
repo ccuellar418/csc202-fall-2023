@@ -40,8 +40,8 @@ class BinaryTree:
     def _pre_order_recursive(self, current_node):
         if current_node is not None:
             print(current_node.value, end=" ")
-        self._pre_order_recursive(current_node.left_child)
-        self._pre_order_recursive(current_node.right_child)
+            self._pre_order_recursive(current_node.left_child)
+            self._pre_order_recursive(current_node.right_child)
 
     def in_order_traversal(self):
         self._in_order_recursive(self.root)
