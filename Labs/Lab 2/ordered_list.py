@@ -7,11 +7,16 @@ class Node:
     prev_node: None
     next_node: None
 
+    def __init__(self, val, prev, next):
+        self.value = val
+        self.prev_node = prev
+        self.next_node = next
+
 
 @dataclass
 class doubly_Ordered_List:
-    head: "Node" = None
-    tail: "Node" = None
+    head: None
+    tail: None
     """
     A doubly-linked ordered list of items, from lowest (head of list) to highest (tail of list)
     """
@@ -19,21 +24,79 @@ class doubly_Ordered_List:
     def is_empty(self):
         """Returns True if OrderedList is empty
         MUST have O(1) performance"""
-        pass
+        if self.head == None:
+            return True
+        return False
 
     def add(self, item):
         """Adds an item to OrderedList, in the proper location based on ordering of items
         from lowest (at head of list) to highest (at tail of list) and returns True.
         If the item is already in the list, do not add it again and return False.
         MUST have O(n) average-case performance"""
-        pass
+        new_node = Node(item, None, None)
+        if self.head is not None:
+            current_node = self.head
+            return self.add_recursive(item, current_node.next_node)
+        else:
+            self.head = new_node
+            self.tail = new_node
+            return True
+
+    def add_recursive(self, item, current_node):
+        # if item exists already
+        if current_node.value == current_node.value:
+            return False
+        # if the item should become head
+
+        if self.head.value > current_node.value:
+            current_node.next_node = self.head
+            current_node.prev_node = current_node
+            self.head = current_node
+            return True
+        # if new_node should become tail
+        if current_node == self.tail:
+            current_node.next_node = current_node
+            current_node.prev_node = current_node
+            self.tail = current_node
+            return True
+
+        # if new_node goes in middle of list
+        if current_node.next_node.value > current_node.value:
+            current_node.prev_node = current_node
+            current_node.next_node = current_node.next_node
+            current_node.next_node.prev_node = current_node
+            current_node.next_node = current_node
+            return True
+
+        return self.add_recursive(item, current_node.next_node)
 
     def remove(self, item):
         """Removes the first occurrence of an item from OrderedList. If item is removed (was
         in the list)
         returns True.  If item was not removed (was not in the list) returns False
         MUST have O(n) average-case performance"""
-        pass
+        if self is not None:
+            current_node = self.head
+            if current_node == item:
+                # if item is head
+                if current_node.prev_node is None:
+                    self.head = current_node.next_node
+                    current_node.next_node.prev_node = None
+
+                # if item is tail
+                elif current_node.next_node is None:
+                    current_node.prev_node.next_node = None
+                    self.tail = current_node.prev_node
+
+                # if item is in middle
+                else:
+                    current_node.prev_node.next_node = current_node.next_node
+                    current_node.next_node.prev_node = current_node.prev_node
+                return True
+            return self.remove(self, item, current_node.next_node)
+        else:
+            # if list is empty
+            return False
 
     def index(self, item):
         """Returns index of the first occurrence of an item in OrderedList (assuming head of
@@ -89,18 +152,28 @@ class doubly_Ordered_List:
 
     def python_list_reversed(self):
         # Checks if the tail even exists
-        if self.tail is None or self.tail.prev_node is None:
+        if self.tail is None:
             return []
 
-        global python_list
-        global current_node
+        # Check if it's only the tain
+        if self.tail is not None and self.tail.prev_node is None:
+            return [self.tail.value]
 
-        while current_node is not None:
-            # Puts values into the python_list from the current node
-            python_list.append(current_node.value)
+        python_list = []
+        self.python_list_reversed_recursive(python_list, self.tail)
+        return python_list
 
-            # Now, move onto the next node
-            current_node.python_list_reversed(current_node.prev_node)
+    def python_list_reversed_recursive(self, python_list, current_node):
+        # Checks if the tail even exists
+        if self.tail is not None or self.tail.prev_node is not None:
+            if current_node is not None:
+                # Puts values into the python_list from the current node
+                print(python_list[0])
+
+                # Now, move onto the next node
+                current_node.python_list_reversed_recursive(
+                    python_list, current_node.prev_node
+                )
         return python_list
 
     """
@@ -110,17 +183,25 @@ class doubly_Ordered_List:
     """
 
     def size(self):
-        global count
-        global current_node
-
         # Checks if the head even exists
-        if self.head is None or self.head.next_node is None:
+        if self.head is None:
             return 0
+
+        # If head is the only node
+        if self.head.next_node is None:
+            return 1
+
+        count = 0
+        current_node = self.head
 
         # Add up the number of nodes in the list
         if current_node is not None:
+            self.size_recursive(count, current_node.next_node)
+
+        return count
+
+    def size_recursive(self, count, current_node):
+        if current_node is not None:
             count += 1
             current_node = current_node.next_node
-            self.size()
-        else:
-            return count
+            self.size_recursive(count, current_node)
