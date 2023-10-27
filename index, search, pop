@@ -1,0 +1,66 @@
+    def index(self, item):
+        #head is to the first
+        #tail is to the last
+        current_node=self.head
+        counter=0
+        new_node = Node(item, None, None)
+        if current_node != None:
+            while current_node != None:
+                if item != current_node.value:
+                    current_node=current_node.next_node
+                    counter +=1
+                elif item == current_node.value:
+                    return counter
+                else:
+                    return None
+        else:
+            return None
+
+        '''Returns index of the first occurrence of an item in OrderedList (assuming head of
+        list is index 0).
+        If item is not in list, return None
+        MUST have O(n) average-case performance'''
+        pass
+
+
+    def pop(self, index):
+        current_node = self.head
+        counter = 0
+        '''#put this in the unit test cases file. not this file
+        if index <0:
+            self.assertRaise(ValueError)
+        if index > len(current_node)
+        self.assertRaise(ValueError)'''
+        if index<0:
+            raise ValueError("Index can not be negative.")
+
+        while current_node != None:
+            counter +=1
+            current_node = current_node.next_node
+
+        if index>= counter:
+            raise ValueError("Index can not be larger than the size of the list")
+
+
+        '''Removes and returns item at index (assuming head of list is index 0).
+        If index is negative or >= size of list, raises IndexError
+        MUST have O(n) average-case performance'''
+
+
+    def search(self,item):
+        new_node = Node(item, None, None)
+
+        if self.head != None:
+            current_node = self.head
+            self.head = current_node.next_node
+        #elif node.is_empty == False:
+         #   current_node = self.head
+        else:
+            return False
+        if current_node!=None:
+            if item == current_node.value: #fix this. this is just the place-holder to what will be called to access the list
+                return True
+            else:
+                return(doubly_Ordered_List.search(self,item))
+        else:
+            return False
