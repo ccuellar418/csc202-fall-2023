@@ -24,60 +24,58 @@ class doubly_Ordered_List:
     def is_empty(self):
         """Returns True if OrderedList is empty
         MUST have O(1) performance"""
-        if self.head == None:
+        if self.head is None:
             return True
-        return False
+        else:
+            return False
 
-    def add(self, item):
+    def add(self, item, head):
         """Adds an item to OrderedList, in the proper location based on ordering of items
         from lowest (at head of list) to highest (at tail of list) and returns True.
         If the item is already in the list, do not add it again and return False.
         MUST have O(n) average-case performance"""
         new_node = Node(item, None, None)
         if self.head is not None:
-            current_node = self.head
-            return self.add_recursive(item, current_node.next_node)
+            current_node = head
+            # if item exists already
+            if current_node.value == new_node.value:
+                return False
+            # if the item should become head
+
+            if self.head.value > new_node.value:
+                new_node.next_node = self.head
+                current_node.prev_node = new_node
+                self.head = new_node
+                return True
+            # if new_node should become tail
+            if current_node == self.tail:
+                current_node.next_node = new_node
+                new_node.prev_node = current_node
+                self.tail = new_node
+                return True
+
+            # if new_node goes in middle of list
+            if current_node.next_node.value > new_node.value:
+                new_node.prev_node = current_node
+                new_node.next_node = current_node.next_node
+                current_node.next_node.prev_node = new_node
+                current_node.next_node = new_node
+                return True
+
+            return self.add(item, current_node.next_node)
         else:
             self.head = new_node
             self.tail = new_node
             return True
 
-    def add_recursive(self, item, current_node):
-        # if item exists already
-        if current_node.value == current_node.value:
-            return False
-        # if the item should become head
-
-        if self.head.value > current_node.value:
-            current_node.next_node = self.head
-            current_node.prev_node = current_node
-            self.head = current_node
-            return True
-        # if new_node should become tail
-        if current_node == self.tail:
-            current_node.next_node = current_node
-            current_node.prev_node = current_node
-            self.tail = current_node
-            return True
-
-        # if new_node goes in middle of list
-        if current_node.next_node.value > current_node.value:
-            current_node.prev_node = current_node
-            current_node.next_node = current_node.next_node
-            current_node.next_node.prev_node = current_node
-            current_node.next_node = current_node
-            return True
-
-        return self.add_recursive(item, current_node.next_node)
-
-    def remove(self, item):
+    def remove(self, item, head):
         """Removes the first occurrence of an item from OrderedList. If item is removed (was
         in the list)
         returns True.  If item was not removed (was not in the list) returns False
         MUST have O(n) average-case performance"""
-        if self is not None:
-            current_node = self.head
-            if current_node == item:
+        if head is not None:
+            current_node = head
+            if current_node.value == item:
                 # if item is head
                 if current_node.prev_node is None:
                     self.head = current_node.next_node
@@ -93,7 +91,7 @@ class doubly_Ordered_List:
                     current_node.prev_node.next_node = current_node.next_node
                     current_node.next_node.prev_node = current_node.prev_node
                 return True
-            return self.remove(self, item, current_node.next_node)
+            return self.remove(item, current_node.next_node)
         else:
             # if list is empty
             return False
@@ -103,20 +101,67 @@ class doubly_Ordered_List:
         list is index 0).
         If item is not in list, return None
         MUST have O(n) average-case performance"""
-        pass
+        # head is to the first
+        # tail is to the last
+        current_node = self.head
+        counter = 0
+        new_node = Node(item, None, None)
+        if current_node != None:
+            while current_node != None:
+                if item != current_node.value:
+                    current_node = current_node.next_node
+                    counter += 1
+                elif item == current_node.value:
+                    return counter
+                else:
+                    return None
+        else:
+            return None
 
     def pop(self, index):
         """Removes and returns item at index (assuming head of list is index 0).
         If index is negative or >= size of list, raises IndexError
         MUST have O(n) average-case performance"""
-        pass
+        current_node = self.head
+        counter = 0
+        """#put this in the unit test cases file. not this file
+        if index <0:
+            self.assertRaise(ValueError)
+        if index > len(current_node)
+        self.assertRaise(ValueError)"""
+        if index < 0:
+            raise ValueError("Index can not be negative.")
+
+        while current_node != None:
+            counter += 1
+            current_node = current_node.next_node
+
+        if index >= counter:
+            raise ValueError("Index can not be larger than the size of the list")
 
     def search(self, item):
         """Searches OrderedList for item, returns True if item is in list, False otherwise"
         To practice recursion, this method must call a RECURSIVE method that
         will search the list
         MUST have O(n) average-case performance"""
-        pass
+        new_node = Node(item, None, None)
+
+        if self.head != None:
+            current_node = self.head
+            self.head = current_node.next_node
+        # elif node.is_empty == False:
+        #   current_node = self.head
+        else:
+            return False
+        if current_node != None:
+            if (
+                item == current_node.value
+            ):  # fix this. this is just the place-holder to what will be called to access the list
+                return True
+            else:
+                return doubly_Ordered_List.search(self, item)
+        else:
+            return False
 
     """
     Return a Python list representation of OrderedList, from head to tail
