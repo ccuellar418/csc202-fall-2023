@@ -6,6 +6,11 @@ class Node:
     value: int
     prev_node: None
     next_node: None
+    
+    def __init__(self, val, prev, next):
+        self.value = val
+        self.prev_node = prev
+        self.next_node = next
 
 
 @dataclass
@@ -20,12 +25,44 @@ class doubly_Ordered_List:
         MUST have O(1) performance"""
         pass
 
-    def add(self, item):
+    def add(self, item, head):
         """Adds an item to OrderedList, in the proper location based on ordering of items
         from lowest (at head of list) to highest (at tail of list) and returns True.
         If the item is already in the list, do not add it again and return False.
         MUST have O(n) average-case performance"""
-        pass
+        new_node = Node(item, None, None)
+        if self.head is not None:
+            current_node = head
+            #if item exists already
+            if current_node.value == new_node.value:
+                return False
+            #if the item should become head
+
+            if self.head.value > new_node.value:
+                new_node.next_node = self.head
+                current_node.prev_node = new_node
+                self.head = new_node
+                return True
+            #if new_node should become tail
+            if current_node == self.tail:
+                current_node.next_node = new_node
+                new_node.prev_node = current_node
+                self.tail = new_node
+                return True
+
+            #if new_node goes in middle of list
+            if current_node.next_node.value > new_node.value:
+                new_node.prev_node = current_node
+                new_node.next_node = current_node.next_node
+                current_node.next_node.prev_node = new_node
+                current_node.next_node = new_node
+                return True
+
+            return(self.add(item, current_node.next_node))
+        else:
+            self.head = new_node
+            self.tail = new_node
+            return True
 
     def remove(self, item):
         """Removes the first occurrence of an item from OrderedList. If item is removed (was
