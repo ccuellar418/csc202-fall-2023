@@ -213,12 +213,10 @@ class doubly_Ordered_List:
         if self.tail is not None or self.tail.prev_node is not None:
             if current_node is not None:
                 # Puts values into the python_list from the current node
-                print(python_list[0])
+                python_list.append(current_node.value)
 
                 # Now, move onto the next node
-                current_node.python_list_reversed_recursive(
-                    python_list, current_node.prev_node
-                )
+                self.python_list_reversed_recursive(python_list, current_node.prev_node)
         return python_list
 
     """
@@ -231,22 +229,18 @@ class doubly_Ordered_List:
         # Checks if the head even exists
         if self.head is None:
             return 0
-
         # If head is the only node
-        if self.head.next_node is None:
+        elif self.head.next_node is None:
             return 1
+        else:
+            count = 0
+            current_node = self.head
 
-        count = 0
-        current_node = self.head
-
-        # Add up the number of nodes in the list
-        if current_node is not None:
-            self.size_recursive(count, current_node.next_node)
-
-        return count
+            # Add up the number of nodes in the list
+            if current_node is not None:
+                self.size_recursive(count, current_node.next_node)
+            return count
 
     def size_recursive(self, count, current_node):
         if current_node is not None:
-            count += 1
-            current_node = current_node.next_node
-            self.size_recursive(count, current_node)
+            return self.size_recursive(count + 1, current_node.next_node)

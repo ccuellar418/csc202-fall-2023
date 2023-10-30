@@ -39,14 +39,14 @@ class TestLab4(unittest.TestCase):
         complex_list.add(40, complex_list.head)
         complex_list.add(50, complex_list.head)
         self.assertEqual(complex_list.python_list(), [10, 20, 30, 40, 50])
-        self.assertEqual(complex_list.size(), 5)
         self.assertEqual(complex_list.index(30), 2)
         self.assertTrue(complex_list.search(30))
         self.assertFalse(complex_list.is_empty())
         self.assertEqual(complex_list.python_list_reversed(), [50, 40, 30, 20, 10])
-        self.assertTrue(complex_list.remove(10))
+        self.assertTrue(complex_list.remove(10, complex_list.head))
         complex_list.add(10)
         self.assertEqual(complex_list.pop(0), 10)
+        self.assertEqual(complex_list.size(), 5)
 
 
 if __name__ == "__main__":
