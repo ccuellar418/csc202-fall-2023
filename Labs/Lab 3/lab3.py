@@ -2,19 +2,19 @@ from dataclasses import dataclass
 
 
 @dataclass
-class Node:
-    value: int
-    left_child: "Node" = None
-    right_child: "Node" = None
+class TreeNode:
+    value: int = None
+    left_child: "TreeNode" = None
+    right_child: "TreeNode" = None
 
 
 @dataclass
-class BinaryTree:
-    root: Node = None
+class BST:
+    root: TreeNode = None
 
     def insert(self, value):
         if not self.root:
-            self.root = Node(value)
+            self.root = TreeNode(value)
         else:
             self._insert_recursive(self.root, value)
 
@@ -23,12 +23,12 @@ class BinaryTree:
             if current_node.left_child is not None:
                 self._insert_recursive(current_node.left_child, value)
             else:
-                current_node.left_child = Node(value)
+                current_node.left_child = TreeNode(value)
         elif value > current_node.value:
             if current_node.right_child is not None:
                 self._insert_recursive(current_node.right_child, value)
             else:
-                current_node.right_child = Node(value)
+                current_node.right_child = TreeNode(value)
         else:
             # Value already exists in the tree, handle as per your requirement.
             pass
@@ -63,16 +63,50 @@ class BinaryTree:
             self._post_order_recursive(current_node.right_child)
             print(current_node.value, end=" ")
 
+    def isBST(self) -> bool:
+        return self._isBST(self.root)
 
-# Example usage:
-if __name__ == "__main__":
-    bt = BinaryTree()
-    elements = [44, 17, 88, 8, 32, 65, 97, 28, 54, 82, 93, 29, 78, 80]
-    for elem in elements:
-        bt.insert(elem)
-    print("Pre-order Traversal:")
-    bt.pre_order_traversal()
-    print("In-order Traversal:")
-    bt.in_order_traversal()
-    print("Post-order Traversal:")
-    bt.post_order_traversal()
+    def _isBST(self, current_node) -> bool:
+        if current_node is not None:
+            if current_node.left_child is not None:
+                if current_node.left_child.value > current_node.value:
+                    return False
+                else:
+                    self._isBST(current_node.left_child)
+            if current_node.right_child is not None:
+                if current_node.right_child.value < current_node.value:
+                    return False
+                else:
+                    self._isBST(current_node.right_child)
+            return True
+        else:
+            return True
+
+    def convertToSortedArray(self) -> list:
+        return self._convertToSortedArray(self.root)
+
+    def _convertToSortedArray(self, current_node) -> list:
+        if current_node is not None:
+            if current_node.left_child is not None:
+                self._convertToSortedArray(current_node.left_child)
+            if current_node.right_child is not None:
+                self._convertToSortedArray(current_node.right_child)
+            return [current_node.value]
+        else:
+            return []
+
+    def lowestCommonAncestor(self) -> int:
+        return self._lowestCommonAncestor(self.root)
+
+    def _lowestCommonAncestor(self, current_node) -> int:
+        if current_node is not None:
+            if current_node.left_child is not None:
+                self._lowestCommonAncestor(current_node.left_child)
+            if current_node.right_child is not None:
+                self._lowestCommonAncestor(current_node.right_child)
+            return current_node.value
+        else:
+            return None
+
+    def deleteTree(self):
+        self.root = None
