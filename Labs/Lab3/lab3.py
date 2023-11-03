@@ -83,17 +83,18 @@ class BST:
             return True
 
     def convertToSortedArray(self) -> list:
-        return self._convertToSortedArray(self.root)
+        return self._convertToSortedArray(self.root, [])
 
-    def _convertToSortedArray(self, current_node) -> list:
-        if current_node is not None:
-            if current_node.left_child is not None:
-                self._convertToSortedArray(current_node.left_child)
-            if current_node.right_child is not None:
-                self._convertToSortedArray(current_node.right_child)
-            return [current_node.value]
-        else:
+    def _convertToSortedArray(self, current_node, sorted_array) -> list:
+        if current_node is None or sorted_array is None:
             return []
+        else:
+            if current_node.left_child is not None:
+                self._convertToSortedArray(current_node.left_child, sorted_array)
+            sorted_array.append(current_node.value)
+            if current_node.right_child is not None:
+                self._convertToSortedArray(current_node.right_child, sorted_array)
+            return sorted_array
 
     def lowestCommonAncestor(self) -> int:
         return self._lowestCommonAncestor(self.root)

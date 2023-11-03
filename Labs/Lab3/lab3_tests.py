@@ -32,6 +32,14 @@ class TestLab3(unittest.TestCase):
         tree.root.right_child = TreeNode(10)
         self.assertEqual(tree.convertToSortedArray(), [1, 5, 10])
 
+    def test_convert_to_sorted_array_complex_tree(self):
+        tree = BST()
+        tree.root = TreeNode(5)
+        tree.root.left_child = TreeNode(1)
+        tree.root.right_child = TreeNode(10)
+        tree.root.right_child.right_child = TreeNode(15)
+        self.assertEqual(tree.convertToSortedArray(), [1, 5, 10, 15])
+
     def test_lowest_common_ancestor_empty_tree(self):
         tree = BST()
         self.assertEqual(tree.lowestCommonAncestor(), None)
