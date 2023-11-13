@@ -111,3 +111,6 @@ class BST:
 
     def deleteTree(self):
         self.root = None
+
+    def testRaiseErrorFunction(self):
+        raise ValueError("This is a test error")

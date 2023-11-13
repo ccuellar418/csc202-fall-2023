@@ -80,6 +80,10 @@ class TestLab3(unittest.TestCase):
         tree.deleteTree()
         self.assertEqual(tree.root, None)
 
+    def test_raise_error_function(self):
+        tree = BST()
+        self.assertRaises(ValueError, tree.testRaiseErrorFunction)
+
 
 if __name__ == "__main__":
     unittest.main()
