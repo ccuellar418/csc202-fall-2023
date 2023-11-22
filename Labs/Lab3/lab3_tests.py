@@ -67,6 +67,15 @@ class TestLab3(unittest.TestCase):
         tree.root.right_child.right_child = TreeNode(15)
         self.assertEqual(tree.lowestCommonAncestor(), 5)
 
+    def test_lowest_common_ancestor_extreme_case(self):
+        tree = BST()
+        tree.root = TreeNode(5)
+        tree.root.left_child = TreeNode(1)
+        tree.root.right_child = TreeNode(10)
+        tree.root.right_child.right_child = TreeNode(15)
+        tree.root.right_child.right_child.right_child = TreeNode(20)
+        self.assertEqual(tree.lowestCommonAncestor(), 5)
+
     def test_delete_tree_empty_tree(self):
         tree = BST()
         tree.deleteTree()
@@ -79,10 +88,6 @@ class TestLab3(unittest.TestCase):
         tree.root.right_child = TreeNode(10)
         tree.deleteTree()
         self.assertEqual(tree.root, None)
-
-    def test_raise_error_function(self):
-        tree = BST()
-        self.assertRaises(ValueError, tree.testRaiseErrorFunction)
 
 
 if __name__ == "__main__":

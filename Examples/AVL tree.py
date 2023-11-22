@@ -5,20 +5,18 @@ from dataclasses import dataclass
 @dataclass
 class TreeNode:
     val: int
-    left_child: 'TreeNode' = None
-    right_child: 'TreeNode' = None
+    left_child: "TreeNode" = None
+    right_child: "TreeNode" = None
     height: int = 1
 
 
 # AVL tree class which supports the Insert operation
 @dataclass
 class AVL_Tree:
-
     # Recursive function to insert value in
     # subtree rooted with node and returns
     # new root of the subtree.
     def insert(self, root: TreeNode, value: int) -> TreeNode:
-
         # Step 1 - Perform normal BST
         if not root:
             return TreeNode(value)
@@ -28,8 +26,9 @@ class AVL_Tree:
             root.right_child = self.insert(root.right_child, value)
 
         # Step 2 - Update the height of the ancestor node
-        root.height = 1 + max(self.getHeight(root.left_child),
-                              self.getHeight(root.right_child))
+        root.height = 1 + max(
+            self.getHeight(root.left_child), self.getHeight(root.right_child)
+        )
 
         # Step 3 - Get the balance factor
         balance = self.getBalance(root)
@@ -65,10 +64,8 @@ class AVL_Tree:
         z.right_child = T2
 
         # Update heights
-        z.height = 1 + max(self.getHeight(z.left_child),
-                           self.getHeight(z.right_child))
-        y.height = 1 + max(self.getHeight(y.left_child),
-                           self.getHeight(y.right_child))
+        z.height = 1 + max(self.getHeight(z.left_child), self.getHeight(z.right_child))
+        y.height = 1 + max(self.getHeight(y.left_child), self.getHeight(y.right_child))
 
         # Return the new root
         return y
@@ -82,10 +79,8 @@ class AVL_Tree:
         z.left_child = T3
 
         # Update heights
-        z.height = 1 + max(self.getHeight(z.left_child),
-                           self.getHeight(z.right_child))
-        y.height = 1 + max(self.getHeight(y.left_child),
-                           self.getHeight(y.right_child))
+        z.height = 1 + max(self.getHeight(z.left_child), self.getHeight(z.right_child))
+        y.height = 1 + max(self.getHeight(y.left_child), self.getHeight(y.right_child))
 
         # Return the new root
         return y
@@ -123,9 +118,24 @@ root = myTree.insert(root, 50)
 root = myTree.insert(root, 25)
 
 
+# Preorder Traversal
+print("Preorder traversal of the", "constructed AVL tree is")
+myTree.preOrder(root)
+print()
+
+myTree2 = AVL_Tree()
+root = None
+root = myTree2.insert(root, 9)
+root = myTree2.insert(root, 5)
+root = myTree2.insert(root, 10)
+root = myTree2.insert(root, 0)
+root = myTree2.insert(root, 6)
+root = myTree2.insert(root, 11)
+root = myTree2.insert(root, -1)
+root = myTree2.insert(root, 1)
+root = myTree2.insert(root, 2)
 
 # Preorder Traversal
-print("Preorder traversal of the",
-      "constructed AVL tree is")
-myTree.preOrder(root)
+print("Preorder traversal of the", "constructed AVL tree is")
+myTree2.preOrder(root)
 print()

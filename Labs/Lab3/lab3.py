@@ -109,8 +109,15 @@ class BST:
         else:
             return None
 
-    def deleteTree(self):
-        self.root = None
+    def deleteTreeRecursive(self, node):
+        if node:
+            self.deleteTreeRecursive(node.left_child)
+            self.deleteTreeRecursive(node.right_child)
 
-    def testRaiseErrorFunction(self):
-        raise ValueError("This is a test error")
+            node.left_child = None
+            node.right_child = None
+        else:
+            self.root = None
+
+    def deleteTree(self):
+        self.deleteTreeRecursive(self.root)
