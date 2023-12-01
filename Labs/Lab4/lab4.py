@@ -3,9 +3,9 @@ from dataclasses import dataclass
 
 @dataclass
 class MaxHeap:
+    size: int = 0
     capacity: int = 0
     heap: list = None
-    heap_internal: list = None
 
     def __init__(self, capacity: int = 0):
         self.capacity = capacity
@@ -15,7 +15,11 @@ class MaxHeap:
     # Returns true if successful, false if there is no room in the heap
     # "item" can be any primitive or object that can be compared with other items using the < operator
     def enqueue(self, item) -> bool:
-        pass
+        if self.is_full():
+            return False
+        self.heap = self.heap + [item]
+        self.heap = self.build_heap(self.heap)
+        return True
 
     # Returns max without changing the heap, returns None if the heap is empty
     def peek(self):
@@ -25,7 +29,14 @@ class MaxHeap:
 
     # Returns max and removes it from the heap and restores the heap property
     def dequeue(self):
-        pass
+        if self.is_empty():
+            return None
+        max = self.heap[0]
+        self.heap[0] = self.heap[-1]
+        self.heap = self.heap[:-1]
+        self.max_heapify(self.heap, 0)
+        self.size -= 1
+        return max
 
     # Returns a list of contents of the heap in the order it is stored internal to the heap.
     def contents(self) -> list:
@@ -36,6 +47,7 @@ class MaxHeap:
     def build_heap(self, alist: list) -> list:
         if self.capacity < len(alist):
             self.capacity = len(alist)
+        self.size = len(alist)
         self.heap = alist
         for i in range(len(self.heap) // 2, -1, -1):
             self.max_heapify(self.heap, i)
@@ -56,11 +68,11 @@ class MaxHeap:
 
     # Returns true if the heap is empty. Otherwise, returns false.
     def is_empty(self) -> bool:
-        return not self.is_full()
+        return self.get_size() == 0
 
     # Returns true if the heap is full. Otherwise, returns false.
     def is_full(self) -> bool:
-        return self.get_capacity() == self.get_size()
+        return self.get_size() == self.get_capacity()
 
     # Returns the capacity of the heap
     def get_capacity(self) -> int:
@@ -68,9 +80,7 @@ class MaxHeap:
 
     # Returns the number of actual (non-None) elements in the heap
     def get_size(self) -> int:
-        for i in range(len(self.heap)):
-            if self.heap[i] is None:
-                return i
+        return self.size
 
     # Where the parameter i is an index in the heap and perc_down moves the element stored at that location to its proper place in the heap rearranging elements as it goes.
     def perc_down(self, i) -> None:
