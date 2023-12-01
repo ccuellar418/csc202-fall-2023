@@ -53,6 +53,10 @@ class MaxHeap:
             self.max_heapify(self.heap, i)
         return self.heap
 
+    # Swap two elements in the heap
+    def swap(self, i: int, j: int) -> None:
+        self.heap[i], self.heap[j] = self.heap[j], self.heap[i]
+
     # Process for finding the largest
     def max_heapify(self, alist: list, index: int):
         largest = index
@@ -63,7 +67,7 @@ class MaxHeap:
         if right < len(alist) and alist[right] > alist[largest]:
             largest = right
         if largest != index:
-            alist[index], alist[largest] = alist[largest], alist[index]
+            self.swap(index, largest)
             self.max_heapify(alist, largest)
 
     # Returns true if the heap is empty. Otherwise, returns false.
@@ -82,14 +86,39 @@ class MaxHeap:
     def get_size(self) -> int:
         return self.size
 
+    # Get the index of the left child of the element at index i
+    def get_left_child_index(self, i) -> int:
+        return (2 * i) + 1
+
+    # Get the index of the right child of the element at index i
+    def get_right_child_index(self, i) -> int:
+        return (2 * i) + 2
+
     # Where the parameter i is an index in the heap and perc_down moves the element stored at that location to its proper place in the heap rearranging elements as it goes.
     def perc_down(self, i) -> None:
-        pass
+        if len(self.heap) < i:
+            return
+        else:
+            while (i * 2) <= self.size:
+                j = max(self.get_left_child_index(i), self.get_right_child_index(i))
+                if self.heap[i] < self.heap[j]:
+                    self.swap(i, j)
+                i = j
 
     # Where the parameter i is an index in the heap and perc_up moves the element stored at that location to its proper place in the heap rearranging elements as it goes.
     def perc_up(self, i) -> None:
-        pass
+        if len(self.heap) < i:
+            return
+        else:
+            while (
+                i // 2 > 0
+                and i // 2 < len(self.heap)
+                and self.heap[i] > self.heap[i // 2]
+            ):
+                self.swap(i, i // 2)
+            i = i // 2
 
     # Perform heap sort on input alist in ascending order. This method will discard the current contents of the heap, build a new heap using the items in alist, then mutate alist to put the items in ascending order
     def heap_sort_ascending(self, alist) -> None:
-        pass
+        self.heap = self.build_heap(alist)
+        self.heap = self.heap.sort()
