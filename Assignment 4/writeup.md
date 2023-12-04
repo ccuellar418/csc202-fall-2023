@@ -1,14 +1,13 @@
-Project 4
-=========
 
-# Team Members:
+# Project 4
 
-- George Washington
-- Martin Luther King, Jr.
-- John Lewis
-- Anne of Cleves
+## Team Members
 
-# Expected Data Structures
+- Ronan Biggs
+- Christian Cuellar
+- Adan Silva
+
+## Expected Data Structures
 
 Lorem ipsum dolor sit amet, corpora necessitatibus ius ut, ad mea postea
 tritani alienum. Quo diceret temporibus ad. Ad his sint impetus
@@ -31,36 +30,11 @@ constituam. Ut duo sonet possit civibus, clita ullamcorper duo at, eos
 cu alii porro. Ad aperiam singulis tacimates ius, in vis tollit aperiam
 corpora. Modus audiam abhorreant nec ea, quo ferri nonumy fierent et.
 
-# Initial Code Examination
+## Initial Code Examination
 
-Zril docendi an sed, sed ei facete iriure repudiandae. In ius facer
-electram, ex aeque sanctus vim. Cu per erat legere aperiam, an vel
-omnesque praesent democritum. Mea ipsum malis causae ne, soleat
-iracundia te sea.
+Coverage.py is used to keep track of what lines of code have ran; Therefore the needed data structures will likely be for the purpose of keeping track of the lines run in the test suite. After discussing a binary tree or hash table were the most likely data structures we came up with. A self-balancing binary tree such as a red-black tree would be efficient for inserting which lines have run, and staying ordered to prevent duplicates. A hash table would also work well. It could quickly find if a line of code specified by the user ran and how many times. However, due to collisions this structure may not be as efficient as a tree-like data structure.
 
-Id est mentitum postulant. Atqui labitur evertitur in vix, in omnium
-maiorum menandri est. Ius no idque assum comprehensam, sea ad melius
-integre honestatis. Paulo veniam principes et eos.
-
-Lorem possit perpetua eu eos, solet interpretaris ex vel, usu ne amet
-tation. Eu eum affert suscipit, sea atomorum persequeris comprehensam
-cu, ei iudico primis bonorum has. Ei mel nihil munere, te velit
-imperdiet disputationi pri. Persius fabulas no has, eam erat ullum
-dolorem ad, no qui justo labitur menandri. Ius ut alii iudico nusquam,
-volutpat tincidunt an mea. Id mazim aperiri theophrastus sea, illud
-aliquam corpora ea sea. Sit adversarium voluptatibus ei, ferri ubique
-perpetua et per, sit ad pertinax instructior.
-
-Graeci latine no usu. Duo at iusto postulant. At ius unum impedit. Ea
-per nominati reprehendunt, quaestio perpetua definitionem ei his,
-accumsan salutatus ullamcorper id vix.
-
-Mea offendit voluptaria ut, ius omnes debitis ex. Sea ne soleat
-praesent, mutat posse in cum, his audiam percipit necessitatibus id. Mel
-ea nonumy expetendis, voluptua atomorum assentior vix ea, sea eu utamur
-patrioque. Homero propriae singulis ei vis, amet latine vivendum eum id.
-
-# Detailed Code Examination
+## Detailed Code Examination
 
 Accumsan platonem ne eam, no nam decore suavitate. Nulla comprehensam
 nam ne. Amet everti sit cu. Te scaevola posidonium pro, vix alii
@@ -106,25 +80,15 @@ inciderint has ut. An eius mazim gubergren sit. Quo corpora nominavi
 ea. Ne sea eius feugait inciderint, soleat animal aliquam mea eu. Ut
 falli persius complectitur has.
 
-# Summary
+## Summary
 
-Pro id tibique perpetua, in alterum suscipit eos. Dictas scaevola
-signiferumque nec ut, imperdiet reformidans est an. Laudem nostro
-meliore ius ei, sea ea diam comprehensam. Et legere docendi constituto
-qui, alia offendit sapientem has no, solet eirmod efficiantur ad
-vix. Odio illud persecuti ut vis.
-
-Vim eu omnis definitiones, vocibus suavitate splendide ex usu. Eum
-dicunt imperdiet ad, an pri reformidans contentiones. Pro fabulas
-incorrupte et. Eu dolorem antiopam maiestatis sit, dictas indoctum
-principes in ius. Mei id doming quaeque honestatis, mei suas dolor
-propriae in, brute volumus ei vim. Sea semper eligendi honestatis ut,
-integre sapientem concludaturque per in. Choro soleat euismod ut sed, an
-eam dico lorem tempor.
-
-In ius habemus partiendo, te vix appetere democritum expetendis, mea
-ferri dicam cu. Ex sed mazim philosophia, iudico fierent ea mel. Quod
-magna petentium ex vim, dicant timeam pertinax quo te, ea eam facilis
-tractatos explicari. Ei quo aperiam laoreet scaevola. Suas utinam
-malorum usu at, quodsi neglegentur ex vim, vix ex quando decore.
-
+Overall, the provided code-base has a lot more professional aspects to it.
+Functions are named exactly to their function in the code, allowing the
+developers to not have to write outrageous amounts of comments. Yes, the
+repository itself is very big itself, but everything is very much organized with what each piece
+does overall, allowing maintenance to be easier as maintainers only have to look in one
+aspect of the repository rather than wasting time scanning through it entirely. The provided
+code base is much more professionally done than my own code-bases currently. For example,
+they have their files separated out into their categories while ours tend to be just crumpled together,
+forcing us to go through all of them to see what I want to find, which can eat up time.
+Their documentation tool is super interesting. We wonder if we are able to do something similar later on.
