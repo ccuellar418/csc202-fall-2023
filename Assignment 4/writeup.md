@@ -7,28 +7,9 @@
 - Christian Cuellar
 - Adan Silva
 
-## Expected Data Structures
+## Before Examining the Code
 
-Lorem ipsum dolor sit amet, corpora necessitatibus ius ut, ad mea postea
-tritani alienum. Quo diceret temporibus ad. Ad his sint impetus
-necessitatibus. Mutat prodesset voluptaria sea te.
-
-Nullam eruditi vix an. Mei tale verterem constituto id. Et persius
-mediocrem quaerendum quo, at eam porro munere euismod. Ea dicat sonet
-reprimique nam, oporteat dignissim disputando pro ut. Usu platonem
-constituto cu, fuisset fierent id pri. Mea in dicat fuisset elaboraret,
-ad nam partem tempor persius. Ne qui dolorum platonem partiendo.
-
-Ius solet interesset ad. Qui quem abhorreant in, utamur evertitur
-deseruisse eam in. At velit quando ius. Mel primis tractatos explicari
-ut, vel at quodsi delenit qualisque. Noluisse perpetua interesset sit
-ea. At suas ceteros qui, ad assueverit referrentur sea.
-
-Vero pericula cu cum, has ut errem persius, constituto concludaturque ex
-his. Eu duo augue nominavi. Vim quem detraxit te, sed ea iusto appetere
-constituam. Ut duo sonet possit civibus, clita ullamcorper duo at, eos
-cu alii porro. Ad aperiam singulis tacimates ius, in vis tollit aperiam
-corpora. Modus audiam abhorreant nec ea, quo ferri nonumy fierent et.
+First looking into this project, it is very clear that it is very professionally done and organized. There is a README file present, talking about the code's functionality, maintainers, installation instructions, and other sort of useful information for anyone who is stumbling into this code repository for the first time. A very big part of project is source code, but other useful parts are included in as well. This includes CI implementation for building and running unit tests and tools for generating useful documentation. A good portion of the source code does lie within these unit tests, with their purpose to throughout verify functionality within their separate python source files, which are divided up the functions based on their supposed functionality.
 
 ## Initial Code Examination
 
