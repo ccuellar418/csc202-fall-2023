@@ -13,7 +13,7 @@ First looking into this project, it is very clear that it is very professionally
 
 ## Initial Code Examination
 
-Coverage.py is used to keep track of what lines of code have ran; Therefore the needed data structures will likely be for the purpose of keeping track of the lines run in the test suite. After discussing a binary tree or hash table were the most likely data structures we came up with. A self-balancing binary tree such as a red-black tree would be efficient for inserting which lines have run, and staying ordered to prevent duplicates. A hash table would also work well. It could quickly find if a line of code specified by the user ran and how many times. However, due to collisions this structure may not be as efficient as a tree-like data structure.
+Coverage.py is used to keep track of what lines of code have ran; Therefore the needed data structures will likely be for the purpose of keeping track of the lines run in the test suite. After discussing a binary tree or hash table were the most likely data structures we came up with. A self-balancing binary tree such as a red-black tree would be efficient for inserting which lines have run, and staying ordered to prevent duplicates. A hash table would also work well. After all, lookup is within the O(1) time, resulting in less use of lengthy searches to get our necessary data. It could quickly find if a line of code specified by the user ran and how many times. However, the maintainers need to keep in mind that hash tables are very prone to collisions. Despite this, good, efficient probing sequences can easily overcome that potential problem.
 
 ## Detailed Code Examination
 
