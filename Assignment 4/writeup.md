@@ -7,13 +7,38 @@
 - Christian Cuellar
 - Adan Silva
 
-## Before Examining the Code
+## Expected Data Structures
 
-First looking into this project, it is very clear that it is very professionally done and organized. There is a README file present, talking about the code's functionality, maintainers, installation instructions, and other sort of useful information for anyone who is stumbling into this code repository for the first time. A very big part of project is source code, but other useful parts are included in as well. This includes CI implementation for building and running unit tests and tools for generating useful documentation. A good portion of the source code does lie within these unit tests, with their purpose to throughout verify functionality within their separate python source files, which are divided up the functions based on their supposed functionality.
+Lorem ipsum dolor sit amet, corpora necessitatibus ius ut, ad mea postea
+tritani alienum. Quo diceret temporibus ad. Ad his sint impetus
+necessitatibus. Mutat prodesset voluptaria sea te.
+
+Nullam eruditi vix an. Mei tale verterem constituto id. Et persius
+mediocrem quaerendum quo, at eam porro munere euismod. Ea dicat sonet
+reprimique nam, oporteat dignissim disputando pro ut. Usu platonem
+constituto cu, fuisset fierent id pri. Mea in dicat fuisset elaboraret,
+ad nam partem tempor persius. Ne qui dolorum platonem partiendo.
+
+Ius solet interesset ad. Qui quem abhorreant in, utamur evertitur
+deseruisse eam in. At velit quando ius. Mel primis tractatos explicari
+ut, vel at quodsi delenit qualisque. Noluisse perpetua interesset sit
+ea. At suas ceteros qui, ad assueverit referrentur sea.
+
+Vero pericula cu cum, has ut errem persius, constituto concludaturque ex
+his. Eu duo augue nominavi. Vim quem detraxit te, sed ea iusto appetere
+constituam. Ut duo sonet possit civibus, clita ullamcorper duo at, eos
+cu alii porro. Ad aperiam singulis tacimates ius, in vis tollit aperiam
+corpora. Modus audiam abhorreant nec ea, quo ferri nonumy fierent et.
 
 ## Initial Code Examination
 
-Coverage.py is used to keep track of what lines of code have ran; Therefore the needed data structures will likely be for the purpose of keeping track of the lines run in the test suite. After discussing a binary tree or hash table were the most likely data structures we came up with. A self-balancing binary tree such as a red-black tree would be efficient for inserting which lines have run, and staying ordered to prevent duplicates. A hash table would also work well. After all, lookup is within the O(1) time, resulting in less use of lengthy searches to get our necessary data. It could quickly find if a line of code specified by the user ran and how many times. However, the maintainers need to keep in mind that hash tables are very prone to collisions. Despite this, good, efficient probing sequences can easily overcome that potential problem.
+Coverage.py is used to keep track of what lines of code have ran; Therefore the needed data structures will likely be for the purpose of keeping track of the lines run in the test suite. After discussing a binary tree or hash table were the most likely data structures we came up with. A self-balancing binary tree such as a red-black tree would be efficient for inserting which lines have run, and staying ordered to prevent duplicates. A hash table would also work well. It could quickly find if a line of code specified by the user ran and how many times. However, due to collisions this structure may not be as efficient as a tree-like data structure.
+
+Report.py uses hash tables, both manually creating them and using the dictionary object. The file is predominately important for its code, over its comments. the comments explain lines of code, but nothing more.
+
+Files.py uses the os library in python, accessing raw data and turning it into usable files. It also merges the files into the same directories if possible. Then it globally creates the directory to be accessed by the computer. The code is the main function of this file, but it is made a lot more read-able by the in-line comments.
+
+(need 3 more files in coverage subdirectory and 2 files in test subdirectory)
 
 ## Detailed Code Examination
 
